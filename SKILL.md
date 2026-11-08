@@ -13,7 +13,9 @@ mstack is opt-in, like pstack's poteto-mode. It is rigorous and built for large 
 ## Start here
 
 1. Note this file's folder as `<mstack>`. The Skill tool printed it as the base directory.
-2. Read `<mstack>/docs/harness/claude-ai.md` once per session. The bundled skills were written for Cursor, and that file maps every Cursor name to what claude.ai offers, including the all-Claude model table.
+2. Read the adapter for where you are running, once per session. The bundled skills were written for Cursor, and the adapter maps every Cursor name to the tools you have, including the all-Opus model table.
+   - Claude Code, in a terminal or the desktop Code tab on the user's own computer → `<mstack>/docs/harness/claude-code.md`.
+   - claude.ai or the Claude app → `<mstack>/docs/harness/claude-ai.md`.
 3. Route the request.
    - The user named a bundled skill below (`/how ...`, "unslop this", "run interrogate on it") → read `<mstack>/skills/<name>/INSTRUCTIONS.md` and follow it.
    - Anything else, including a bare `/mstack` or `/miracle-mode` → read `<mstack>/skills/miracle-mode/INSTRUCTIONS.md` in full and follow it. It picks the playbook and calls the other skills as its steps need them.

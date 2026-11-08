@@ -8,6 +8,11 @@ mstack is built on [pstack](https://github.com/cursor/plugins/tree/main/pstack) 
 
 mstack is opt-in. It loads only when you type `/mstack`, never on its own, the same as pstack's `poteto-mode`. It is rigorous and suited to large work: features that cross modules, migrations, hard bugs, long unattended runs. On a small task it burns tokens and runs slowly, so skip it for quick fixes and questions.
 
+## Install
+
+- claude.ai: save `mstack.skill` from a chat, or zip this folder and upload it as a skill.
+- Claude Code: `git clone https://github.com/lkyxuan/mstack ~/.claude/skills/mstack`. Update with `git -C ~/.claude/skills/mstack pull`.
+
 ## Use
 
 - `/mstack <task>` for anything that needs rigor. It picks a playbook and runs the other skills as needed.
@@ -20,7 +25,7 @@ mstack is opt-in. It loads only when you type `/mstack`, never on its own, the s
 - `skills/miracle-mode/` is the main mode: playbooks, principles index, and the rules every run follows.
 - `skills/` holds the other 56 skills. Each keeps its instructions in `INSTRUCTIONS.md`, because claude.ai allows one `SKILL.md` per skill.
 - `agents/` holds the subagent roles, `miracle-agent` and `comment-sicko`.
-- `docs/harness/claude-ai.md` maps the Cursor names in the skills to claude.ai and sets every role to Opus.
+- `docs/harness/claude-ai.md` and `docs/harness/claude-code.md` map the Cursor names in the skills to claude.ai and to Claude Code, and set every role to Opus.
 - `docs/upstream-README.md` is the upstream pstack README, kept for reference.
 
 ## Changes from pstack
