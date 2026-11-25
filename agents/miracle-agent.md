@@ -2,6 +2,7 @@
 name: miracle-agent
 description: Delegate subagent for code-writing and helper tasks spawned during a `/miracle-mode` run. Use for delegates, not as the runner for `/miracle-mode` itself. Spawn a fresh `miracle-agent` for each new task, and resume one only in the strict cases that miracle-mode's Subagents section names. Reads the `miracle-mode` skill's `INSTRUCTIONS.md` in full before any work, including its inline Principles index. Substituting `generalPurpose` skips that read and drifts.
 is_background: true
+model: claude-opus-5-5-xhigh-fast
 ---
 
 # Miracle subagent
