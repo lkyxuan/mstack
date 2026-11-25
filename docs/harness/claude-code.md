@@ -39,6 +39,7 @@ The user starts it with `/mstack`. It is opt-in. Never load it on your own.
 | `run_in_background: true` | Omit. Subagents run in the background by default and notify you when they finish. |
 | `resume` | Spawn a new agent and paste the earlier result into its brief. Use `SendMessage` only in the strict cases miracle-mode's Subagents section allows. |
 | `file_attachments` | List the absolute paths in the brief. |
+| A Project worker (Cursor Projects) | An ordinary subagent. Its kickoff still opens with the `worker.md` line. |
 
 ## Models
 
@@ -53,23 +54,15 @@ bug-fix: opus xhigh
 perf-issue: opus xhigh
 hillclimb: opus xhigh
 judgment and prose: opus xhigh
-hardest tasks: opus max
-how explorer: opus high
-how explainer: opus xhigh
-why investigators: opus high
-why synthesizer: opus xhigh
-reflect tooling: opus high
-reflect judgment, divergent, synthesizer: opus xhigh
-arena runners: opus xhigh, opus xhigh
+arena runners: opus xhigh, opus xhigh, opus xhigh
 arena cross-judge pool: opus xhigh
 swarm workers: opus high
-architect runners: opus xhigh, opus xhigh
-interrogate reviewers: opus xhigh, opus xhigh
+interrogate reviewers: opus xhigh, opus xhigh, opus xhigh
 ```
 
 | Cursor | Claude Code |
 | --- | --- |
-| Any model slug, Claude or not (`claude-opus-*`, `grok-*`, `gpt-*`, `composer-*`) | `model: "opus"` with the role's effort from the table. |
+| Any model slug, Claude or not (`claude-opus-*`, `claude-fable-*`, `grok-*`, `gemini-*`, `gpt-*`, `composer-*`) | `model: "opus"` with the role's effort from the table. |
 | `auto` or `inherit-parent` | `model: "opus"` |
 | Raise or lower the reasoning effort | Move the `effort` value one step on the ladder `max` > `xhigh` > `high` > `medium` > `low`. Drop `-fast`. If the schema has no effort field, keep `opus` and say nothing. |
 | A panel of different models (`arena`, `architect`, `interrogate`) | One `opus` agent per seat, each with a fresh brief and no view of the others. Agreement between them is weaker evidence than agreement across model families, so say "same-model panel" when you report it. |

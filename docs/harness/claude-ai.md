@@ -31,6 +31,7 @@ claude.ai accepts only one `SKILL.md` per skill, so each bundled skill keeps its
 | `run_in_background: true` | Omit. Subagents run in the background by default and notify you when they finish. |
 | `resume` | Spawn a new agent and paste the earlier result into its brief. Use `SendMessage` only in the strict cases miracle-mode's Subagents section allows. |
 | `file_attachments` | List the absolute paths in the brief. |
+| A Project worker (Cursor Projects) | An ordinary subagent. Its kickoff still opens with the `worker.md` line. |
 
 ## Models
 
@@ -45,23 +46,15 @@ bug-fix: opus
 perf-issue: opus
 hillclimb: opus
 judgment and prose: opus
-hardest tasks: opus
-how explorer: opus
-how explainer: opus
-why investigators: opus
-why synthesizer: opus
-reflect tooling: opus
-reflect judgment, divergent, synthesizer: opus
-arena runners: opus, opus
+arena runners: opus, opus, opus
 arena cross-judge pool: opus
 swarm workers: opus
-architect runners: opus, opus
-interrogate reviewers: opus, opus
+interrogate reviewers: opus, opus, opus
 ```
 
 | Cursor | claude.ai |
 | --- | --- |
-| Any model slug, Claude or not (`claude-opus-*`, `grok-*`, `gpt-*`, `composer-*`) | `model: "opus"` |
+| Any model slug, Claude or not (`claude-opus-*`, `claude-fable-*`, `grok-*`, `gemini-*`, `gpt-*`, `composer-*`) | `model: "opus"` |
 | `auto` or `inherit-parent` | `model: "opus"` |
 | Raise or lower the reasoning effort, or switch to fast mode | Not available. Keep `opus` and say nothing. |
 | A panel of different models (`arena`, `architect`, `interrogate`) | One `opus` agent per seat, each with a fresh brief and no view of the others. Agreement between them is weaker evidence than agreement across model families, so say "same-model panel" when you report it. |

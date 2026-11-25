@@ -1,0 +1,42 @@
+name: Sync with pstack
+
+on:
+  schedule:
+    - cron: "17 22 * * *" # daily, 06:17 Beijing time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Sync
+        id: sync
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          set +e
+          scripts/upstream/sync.sh --push 2>&1 | tee sync.log
+          code=${PIPESTATUS[0]}
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          [ "$code" = 0 ] || [ "$code" = 2 ]
+      - name: Open an issue on conflict
+        if: steps.sync.outputs.code == '2'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="pstack sync needs a hand merge"
+          if [ -z "$(gh issue list --state open --search "in:title \"$title\"" --json number -q '.[].number')" ]; then
+            { echo "The newest pstack is on the \`upstream\` branch, but it rewrote lines mstack also changed."
+              echo; echo '```'; cat sync.log; echo '```'
+              echo; echo "To finish: \`git checkout main && git merge upstream\`, resolve, then \`python3 scripts/upstream/index.py\`, update \`UPSTREAM\`, and push."
+            } > body.md
+            gh issue create --title "$title" --body-file body.md
+          fi
